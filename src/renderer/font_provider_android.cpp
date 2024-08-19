@@ -59,7 +59,7 @@ auto FontProviderAndroid::GetFontFace(const std::string &font_name,
     if (iso6392_language_code_ == ThreeCC("jpn") || iso6392_language_code_ == 0) {
         FontFamily* family = FindFallbackFamilyByLanguageAndFallbackFor("ja", font_name.c_str());
         if (!family) {
-            family = FindFallbackFamilyByLanguageAndFallbackFor("ja", "sans-serif");
+            family = FindFallbackFamilyByLanguageAndFallbackFor("ja", "serif");
         }
         if (!family) {
             return Err(FontProviderError::kFontNotFound);
@@ -186,7 +186,7 @@ bool FontProviderAndroid::CheckFileAndAppendFontFamily(const char* family_name, 
     }
     if (is_fallback) {
         family.is_fallback = true;
-        family.fallback_for = "sans-serif";
+        family.fallback_for = "serif";
     }
 
     FontFile& font = family.fonts.emplace_back();
@@ -326,7 +326,7 @@ bool FontProviderAndroid::LMPHandleFamily(XMLElement* element) {
     if (const char* lang = element->Attribute("lang")) {
         SplitByComma(lang, current_family.languages);
         current_family.is_fallback = true;
-        current_family.fallback_for = "sans-serif";
+        current_family.fallback_for = "serif";
     }
 
     if (const char* variant = element->Attribute("variant")) {

@@ -59,7 +59,7 @@ void RendererImpl::LoadDefaultFontFamilies() {
     };
 #elif defined(__ANDROID__)
     jpn_default_font_family = {
-        "sans-serif"
+        "serif"
     };
 #else  // Linux, or other platforms
     jpn_default_font_family = {
